@@ -11,6 +11,7 @@ function UpdateAmount() {
     })
 }
 function AddAmount() {
+    UpdateAmount()
     db.collection('Geld').doc("Menge").set({
         menge: Amount + Number(document.querySelector('#menge').value)
     }, { merge: true }).then(() => {
