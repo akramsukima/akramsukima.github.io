@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tijara</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    
+    <body>
+
+
+        <div class="div1">
+            <div class="Amount">
+                <h3>Menge an Geld:</h3>
+                <input id="menge" type="number" value="0">
+                
+            </div>
+            <h4>4er Kurs nicht vergessen!</h4>
+            <button id="submit">Hinzufuegen</button>
+        </div>
+
+        <div class="div2">
+            <h2 id="amount">0 Euro</h2>
+        </div>
+
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+        <script>
+            const config = {
+                apiKey: "AIzaSyB66xdyGOV_rLOAurDsVKbd6TWp_c5ayfo",
+                authDomain: "tijara-4189e.firebaseapp.com",
+                databaseURL: "https://tijara-4189e.firebaseio.com",
+                projectId: "tijara-4189e",
+            };
+            firebase.initializeApp(config)
+            const db = firebase.firestore()
+            db.settings({timestampsInSnapshots: true})
+        </script>
+        <script src="index.js"></script>
+    </body>
+</html>
