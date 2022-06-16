@@ -4,27 +4,51 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tijara</title>
-        <link rel="stylesheet" href="index.css">
+        <title>Nutzer</title>
+        <link rel="stylesheet" href="UserPage.css">
+        <link rel="stylesheet" href="Switch.css">
     </head>
-    
     <body>
-
-
-        <div class="div1">
-            <div class="Amount">
-                <h3>Menge an Geld:</h3>
-                <input id="menge" type="number" value="0">
-                
+        <div class="Main">
+            <div class="MoneyStats">
+                <h3>Statistik</h3>
+                <div class="Layer">
+                    <div class="Umsatz">
+                        <h5>Umsatz:</h5>
+                        <h5 id="umsatz">-€</h5>
+                    </div>
+                    <div class="Profit">
+                        <h5>Profit:</h5>
+                        <h5 id="profit">-€</h5>
+                    </div>
+                </div>
             </div>
-            <h4>4er Kurs nicht vergessen!</h4>
-            <button id="submit">Hinzufuegen</button>
-        </div>
 
-        <div class="div2">
-            <h2 id="amount">0 Euro</h2>
-        </div>
+            <div class="Menu">
+                <h3>Vermerken</h3>
+                <div class="switchLayer">
+                    <h4>Minus</h4>
+                    <label class="switch">
+                        <input id="type"type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <h4>Verkauf</h4>
+                </div>
 
+                <div class="Verkauf">
+                    <div class="menge">
+                        <input id="VerkaufGramm" type="number" placeholder="Gramm">
+                        <input id="VerkaufGeld" type="number" placeholder="Geld">
+                        <button id="VerkaufAdd">Hinzufügen</button>
+                    </div>
+                </div>
+                <div class="Minus">
+                    <input id="MinusMenge" type="number" placeholder="Menge">
+                    <button id="MinusAdd">Hinzufügen</button>
+                </div>
+            </div>
+
+        </div>
 
 
         <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
@@ -41,6 +65,6 @@
             const db = firebase.firestore()
             db.settings({timestampsInSnapshots: true})
         </script>
-        <script src="index.js"></script>
+        <script src="UserPage.js"></script>
     </body>
 </html>
