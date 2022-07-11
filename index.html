@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+    <body>
+
+
+        <div class="stats">
+            <h3>Statistik</h3>
+            <div class="stats-col">
+                <div class="money-collected">
+                    <h4>Umsatz</h4>
+                    <h5 id="money-collected">0€</h5>
+                </div>
+                <div class="profits">
+                    <h4>Profit</h4>
+                    <h5 id="profits">0€</h5>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="reportSale">
+            <h3>Verkauf</h3>
+            <div class="sale-col">
+                <input id="money" type="number" placeholder="Geld">
+                <input id="amount" type="number" placeholder="Menge">
+            </div>
+            <button id="confirmSale">Bestätigen</button>
+        </div>
+        
+        <div class="reportSpending">
+            <h3>Ausgaben</h3>
+            <input id="moneyspend" type="number" placeholder="Geld">
+            <button id="confirmSpend">Bestätigen</button>
+        </div>
+
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+        <script>
+            const config = {
+                apiKey: "AIzaSyB66xdyGOV_rLOAurDsVKbd6TWp_c5ayfo",
+                authDomain: "tijara-4189e.firebaseapp.com",
+                databaseURL: "https://tijara-4189e.firebaseio.com",
+                projectId: "tijara-4189e",
+            };
+            firebase.initializeApp(config)
+            const db = firebase.firestore()
+            db.settings({timestampsInSnapshots: true})
+        </script>
+        <script src="scripts/index.js"></script>
+    </body>
+</html>
