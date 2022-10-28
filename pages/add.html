@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handys Manager</title>
+    <link rel="stylesheet" href="../css/add.css">
+</head>
+    <body>
+
+        <div class="money">
+            <h3 class="netamount">Net: 1000 Euro</h3>
+            <h4 class="availableamount">Available:  Euro</h4>
+            <h5 class="weekchange">0,00%</h5>
+        </div>
+        
+        <div class="navbar">
+            <button id="navAdd">Add</button>
+            <button id="navHistory">History</button>
+            <button id="navCurOrd">Current Orders</button>
+        </div>
+        
+
+        <div class="expense">
+            <h4>Expence</h4>
+
+            <input id="expense-reason" type="text" placeholder="Reason">
+            <input id="expense-amount" type="text" placeholder="Amount">
+
+            <button id="expense-submit">Submit</button>
+        </div>
+
+        <div class="addmoney">
+            <h4>Add Money</h4>
+
+            <input id="addmoney-reason" type="text" placeholder="Reason">
+            <input id="addmoney-amount" type="text" placeholder="Amount">
+
+            <button id="addmoney-submit">Submit</button>
+        </div>
+
+        <div class="device">
+            <h4>Device</h4>
+
+            <input id="device-name" type="text" placeholder="Name">
+            <input id="device-amount" type="text" placeholder="Amount">
+
+            <button id="device-submit">Submit</button>
+        </div>
+
+
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+        <script>
+            const config = {
+                apiKey: "AIzaSyDG4TFpoHukpjfl-infvF3sBNMPgRpDmTg",
+                authDomain: "handys-manager-61d8c.firebaseapp.com",
+                databaseURL: "https://handys-manager-61d8c.firebaseio.com",
+                projectId: "handys-manager-61d8c",
+            };
+            firebase.initializeApp(config)
+            const db = firebase.firestore()
+            db.settings({timestampsInSnapshots: true})
+        </script>
+        <script type="text/javascript" src="../js/add.js"></script>
+    </body>
+</html>
