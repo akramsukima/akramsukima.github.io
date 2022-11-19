@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="devices.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <title>Mina | Home</title>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <h1>Mina</h1>
+
+            <div class="menu">
+                <a href="/Admin/Devices/">Devices</a>
+                <a href="/admin/">Analytics</a>
+                <a href="/">Back to Home</a>
+            </div>
+    
+    
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <div class="mobile-menu">
+        <a href="/admin/devices/">Devices</a>
+        <a href="/admin/">Analytics</a>
+        <a href="/">Back to Home</a>
+    </div>
+    <div class="title">
+        <input id="search" type="text" placeholder="Search for a phone">
+    </div>
+    <div id="RFS">
+        <h2 id="dev-tit">Ready for Sale</h2>    
+        <div id="devices" class="RFS">
+        </div>
+    </div>
+    <div id="IR">
+        <h2 id="dev-tit">In Reperation</h2>
+        <div id="devices" class="IR">
+        </div>
+    </div>
+    <div id="WFS">
+        <h2 id="dev-tit">Waiting for shipmint</h2>
+        <div id="devices"  class="WFS">
+        </div>
+    </div>
+    <div id="toolbar">
+        <button onclick="openAdd()">Add Device</button>
+        <button>Filters</button>
+    </div>
+
+    <div class="details">
+        <div class="page">
+            <div id="title">
+                <h3 id="model">Iphone XS</h3>
+                <div>
+                    <button id="cancelDetails">Cancel</button>
+                    <button id="failedDetails">Failed</button>
+                    <button id="NextStep">Next Step</button>
+                    <button id="closeDetails">Save</button>
+                </div>
+            </div>
+            <h3>Infos</h3>
+            <div class="Input">
+                <h4>ID</h4>
+                <input type="text" class="id" readonly>
+            </div>
+            <div class="Input">
+                <h4>IMEI</h4>
+                <input type="text" class="imei">
+            </div>
+            <div class="Input">
+                <h4>KaufPreis</h4>
+                <input type="number" class="kaufpreis">
+            </div>
+            <div class="Input">
+                <h4>SerienNummer</h4>
+                <input type="text" class="seriennummer">
+            </div>
+            <div class="Input">
+                <h4>Speicher</h4>
+                <input type="number" class="speicher">
+            </div>
+            <div class="Input">
+                <h4>Batterie</h4>
+                <input type="number" class="batterie">
+            </div>
+            <div class="Input">
+                <h4>Bild</h4>
+                <input type="text" class="bild">
+            </div>
+            <textarea id="notes"></textarea>
+            <div class="reperatur">
+                <h3>Reperaturen</h3>
+                <div class="list">
+                    <h5>Noch keine Reperaturen gemeldet</h5>
+                </div>
+                <div class="addrep">
+                    <input id="name" type="text"   placeholder="Name">
+                    <input id="cost" type="number" placeholder="Kosten">
+                    <button onclick=addrep()>Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="add">
+        <div class="page">
+            <div id="title">
+                <h3>Add Device</h3>
+                <div>
+                    <button id="cancelAdd">Cancel</button>
+                    <button id="closeAdd">Add</button>
+                </div>
+            </div>
+            <h3>Infos</h3>
+            <div class="Input">
+                <h4>Model</h4>
+                <input type="text" class="add-model">
+            </div>
+            <div class="Input">
+                <h4>IMEI</h4>
+                <input type="text" class="add-imei">
+            </div>
+            <div class="Input">
+                <h4>KaufPreis</h4>
+                <input type="number" class="add-kaufpreis">
+            </div>
+            <div class="Input">
+                <h4>SerienNummer</h4>
+                <input type="text" class="add-seriennummer">
+            </div>
+            <div class="Input">
+                <h4>Speicher</h4>
+                <input type="number" class="add-speicher">
+            </div>
+            <div class="Input">
+                <h4>Batterie</h4>
+                <input type="number" class="add-batterie">
+            </div>
+            <div class="Input">
+                <h4>Bild</h4>
+                <input type="text" class="add-bild">
+            </div>
+        </div>
+    </div>
+
+    <script src="../../scripts/navbar.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
+        const config = {
+            apiKey: "AIzaSyDhgfmLU_QpKWoyrWLhNsngY7sCQiZucs4",
+            authDomain: "handyshop-c2e14.firebaseapp.com",
+            databaseURL: "https://handyshop-c2e14.firebaseio.com",
+            projectId: "handyshop-c2e14",
+        };
+        firebase.initializeApp(config)
+        const firestore = firebase.firestore();
+        const settings = {/* your settings... */ timestampsInSnapshots: true};
+        firestore.settings(settings);
+        const db = firebase.firestore()
+        const auth = firebase.auth();
+    </script>
+    <script src="devices.js"></script>
+</body>
+
+</html>

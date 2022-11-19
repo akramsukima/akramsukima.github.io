@@ -1,0 +1,53 @@
+.page {
+    margin: 30px;
+    margin-inline: 20px;
+}
+.page h2 {
+    margin-bottom: 20px;
+}
+.box {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 7.5px;
+    padding-inline: 10px;
+    padding-block: 20px;
+}
+.resetpassword {
+    margin-top: 20px;
+}
+.resetpassword .input {
+    margin-top: 15px;
+}
+.resetpassword .input input {
+    width: 80%;
+    height: 30px;
+    border-radius: 7.5px;
+    border: 1px solid var(--d);
+    outline: none;
+    padding-left: 10px;
+}
+.resetpassword .input button {
+    background-color: #7f64a5;
+    border: none;
+    border-radius: 7.5px;
+    color: #ffffff;
+    height: 30px;
+    width: 17%;
+}
+
+.signout {
+    margin-top: 20px;
+    text-align: center;
+}
+.signout button {
+    width: 40%;
+    height: 30px;
+    border-radius: 7.5px;
+    background-color: rgb(221, 78, 109);
+    color: white;
+    border: none;
+}
+.info h4 {
+    font-weight: 300;
+    margin-top: 10px;
+}

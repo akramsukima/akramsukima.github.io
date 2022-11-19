@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pages/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <title>Mina | Home</title>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <h1>Mina</h1>
+
+            <div class="menu">
+                <!-- <a href="/" class="is-active">Kaufen</a> -->
+                <a href="/">Kaufen</a>
+                <a id="myAccount" href="/myaccount/">Mein Konto</a>
+                <a href="/">Über uns</a>
+            </div>
+    
+    
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <div class="mobile-menu">
+        <a href="/">Kaufen</a>
+        <a id="myAccountMobile" href="/myaccount/">Mein Konto</a>
+        <a href="/">Über uns</a>
+    </div>
+
+
+
+    <script src="scripts/navbar.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
+        const config = {
+            apiKey: "AIzaSyDhgfmLU_QpKWoyrWLhNsngY7sCQiZucs4",
+            authDomain: "handyshop-c2e14.firebaseapp.com",
+            databaseURL: "https://handyshop-c2e14.firebaseio.com",
+            projectId: "handyshop-c2e14",
+        };
+        firebase.initializeApp(config)
+        const db = firebase.firestore()
+        const auth = firebase.auth();
+    </script>
+    <script src="scripts/pages/main.js"></script>
+</body>
+
+</html>
