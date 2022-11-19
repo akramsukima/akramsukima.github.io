@@ -92,7 +92,7 @@ body {
 .details {
     display: none;
     position:fixed;
-    z-index: 97;
+    z-index: 100;
     top: 0px;
     width: 100%;
     height: 100%;
@@ -101,12 +101,9 @@ body {
 .details .page {
     position:fixed;
     z-index: 1001;
-    top: 80px;
-    left: 20px;
-    width: calc(100% - 40px);
-    height: calc(100% - 100px);
+    width: 100%;
+    height: 100%;
     background-color: #ffffff;
-    border-radius: 20px;
     overflow-y:scroll;
     padding: 25px;
 }
@@ -115,9 +112,17 @@ body {
     display: flex;
     justify-content: space-between;
 }
+#buttons {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 70px 70px;
+    grid-row-gap: 5px;
+    grid-column-gap: 10px;
+}
 #title h3 {
     line-height: 30px;
 }
+
 #title button {
     background-color: rgb(250, 250, 250);
     border: 1px solid var(--d);
