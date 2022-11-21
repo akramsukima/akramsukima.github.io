@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <title>Mina | Login</title>
+</head>
+<body>
+    <div class="nav"></div>
+
+
+
+
+    <div id="LoginForm">
+        <h2>Anmelden</h2>
+        <input id="user" type="text" placeholder="Email">
+        <input id="pass" type="password" placeholder="Passwort">
+        <button id="submit">Weiter</button>
+        <h6>Sie haben kein Konto? <a href="../signup/">Hier eins erstellen</a></h6>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
+        const config = {
+            apiKey: "AIzaSyDhgfmLU_QpKWoyrWLhNsngY7sCQiZucs4",
+            authDomain: "handyshop-c2e14.firebaseapp.com",
+            databaseURL: "https://handyshop-c2e14.firebaseio.com",
+            projectId: "handyshop-c2e14",
+        };
+        firebase.initializeApp(config)
+        const db = firebase.firestore()
+        const auth = firebase.auth();
+    </script>
+    <script src="../../scripts/fetchHtml.js"></script>
+    <script src="login.js"></script>
+    <link rel="stylesheet" href="../../navbar/navbar.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="../../navbar/navbar.js"></script>
+</body>
+</html>

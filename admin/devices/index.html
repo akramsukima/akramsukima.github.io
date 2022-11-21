@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="devices.css">
-    <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="../../navbar/navbar.css">
     <title>Mina | Home</title>
 </head>
 
 <body>
     <nav>
         <div class="container">
-            <h1>Mina</h1>
+            <a href="/home/"><h1>Mina</h1></a>
 
             <div class="menu">
                 <a href="/Admin/Devices/">Devices</a>
                 <a href="/admin/">Analytics</a>
-                <a href="/">Back to Home</a>
+                <a href="/home/">Back to Home</a>
             </div>
     
     
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div id="WFS">
-        <h2 id="dev-tit">Waiting for shipmint</h2>
+        <h2 id="dev-tit">Waiting for shipment</h2>
         <div id="devices"  class="WFS">
         </div>
     </div>
@@ -154,7 +154,6 @@
         </div>
     </div>
 
-    <script src="../../scripts/navbar.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
@@ -167,11 +166,13 @@
         };
         firebase.initializeApp(config)
         const firestore = firebase.firestore();
-        const settings = {/* your settings... */ timestampsInSnapshots: true};
+        const settings = {timestampsInSnapshots: true};
         firestore.settings(settings);
         const db = firebase.firestore()
         const auth = firebase.auth();
     </script>
+    <script src="../../scripts/fetchHtml.js"></script>
+    <script src="../../navbar/navbar.js"></script>
     <script src="devices.js"></script>
 </body>
 

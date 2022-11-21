@@ -1,6 +1,6 @@
 var currentid = 0
 var Devices = {}
-
+addNavListener()
 
 var Stats = {
     "0": "WFS",
@@ -10,7 +10,6 @@ var Stats = {
 
 
 function details(id) {
-    console.log(id)
     document.querySelector("#name").value = ""
     document.querySelector("#model").innerHTML = Devices[id].Model
     document.querySelector("#cost").value = ""
@@ -56,9 +55,7 @@ function addrep() {
     var name = document.querySelector("#name").value
     var cost = document.querySelector("#cost").value
     var id = document.querySelector('.id').value
-    if (name+cost == '') {
-        console.log('empty')
-    } else {
+    if (!name+cost == '') {
         Devices[id].Reperaturen[name] = Number(cost)
         var totalrep = 0
         document.querySelector(".list").innerHTML = ''
@@ -93,7 +90,6 @@ document.querySelector('#search').addEventListener('change', ()=>{
             match = true
         }
         if (match) {
-            console.log(Devices[key].Model)
             let html = `
             <div id="device" onclick=details('${key}')>
                 <img 
@@ -103,7 +99,6 @@ document.querySelector('#search').addEventListener('change', ()=>{
                 <h6>${Devices[key].Storage}gb  ${Devices[key].Batterie}%</h6>
             </div>
             `
-            console.log(`.${Stats[Devices[key].Status]}`)
             document.querySelector(`.${Stats[Devices[key].Status]}`).innerHTML += html
         }
     } 
@@ -154,7 +149,6 @@ document.querySelector('#failedDetails').addEventListener('click', ()=> {
 document.querySelector("#NextStep").addEventListener('click', ()=> {
     document.querySelector('.details').style.display = 'none'
     var id = document.querySelector('.id').value
-    console.log(Devices[id].Status )
     if (Devices[id].Status == "2") {
         db.collection('Devices').doc('sold').set({
             [id]: {
