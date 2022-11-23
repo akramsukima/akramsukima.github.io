@@ -1,3 +1,5 @@
+document.querySelector('#body').style.display = 'none'
+
 GetHtml('../../navbar/structure.html').then(x => {
     document.querySelector('.nav').innerHTML = x
     addNavListener()
@@ -8,6 +10,7 @@ auth.onAuthStateChanged((user) => {
     } else {
         document.getElementById('myAccount').href = '/auth/login/'
         document.getElementById('myAccountMobile').href = '/auth/login/'
+        document.querySelector('#body').style.display = 'block'
     }
 });
 function isEmail(emailAdress){

@@ -51,7 +51,28 @@ body {
     margin-top: 90px;
     font-size: small ;
 }
-
+.loadingscreen {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -32px 0 0 -32px;
+    border: 8px solid #ffffff; /* Light grey */
+    border-top: 8px solid #8255c2; /* Blue */
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 @media (min-width: 768px) {
     #LoginForm {
