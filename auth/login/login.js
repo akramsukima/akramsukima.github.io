@@ -1,4 +1,4 @@
-document.querySelector('#body').style.display = 'none'
+loadingStart()
 
 GetHtml('../../navbar/structure.html').then(x => {
     document.querySelector('.nav').innerHTML = x
@@ -10,7 +10,7 @@ auth.onAuthStateChanged((user) => {
     } else {
         document.getElementById('myAccount').href = '/auth/login/'
         document.getElementById('myAccountMobile').href = '/auth/login/'
-        document.querySelector('#body').style.display = 'block'
+        loadingEnd()
     }
 });
 function isEmail(emailAdress){
