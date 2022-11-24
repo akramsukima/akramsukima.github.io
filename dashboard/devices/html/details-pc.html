@@ -1,0 +1,55 @@
+<div class="page">
+    <img id="cover">
+    <div class="info">
+        <div id="title">
+            <h2 id="model">Iphone XS</h2>
+            <div id="buttons">
+                <button id="cancelDetails" onclick=cancelDetails()>Abbrechen</button>
+                <button id="failedDetails">Fehlgeschlagen</button>
+                <button id="NextStep">Next Step</button>
+                <button id="closeDetails">Speichern</button>
+            </div>
+        </div>
+        <h3 id="undertitle">Infos</h3>
+        <div class="Input">
+            <h4>ID</h4>
+            <input type="text" class="id" readonly>
+        </div>
+        <div class="Input">
+            <h4>IMEI</h4>
+            <input type="text" class="imei">
+        </div>
+        <div class="Input">
+            <h4>KaufPreis</h4>
+            <input type="number" class="kaufpreis">
+        </div>
+        <div class="Input">
+            <h4>SerienNummer</h4>
+            <input type="text" class="seriennummer">
+        </div>
+        <div class="Input">
+            <h4>Speicher</h4>
+            <input type="number" class="speicher">
+        </div>
+        <div class="Input">
+            <h4>Batterie</h4>
+            <input type="number" class="batterie">
+        </div>
+        <div class="Input">
+            <h4>Bild</h4>
+            <input type="text" class="bild">
+        </div>
+        <textarea id="notes"></textarea>
+        <div class="reperatur">
+            <h3>Reperaturen</h3>
+            <div class="list">
+                <h5>Noch keine Reperaturen gemeldet</h5>
+            </div>
+            <div class="addrep">
+                <input id="name" type="text"   placeholder="Name">
+                <input id="cost" type="number" placeholder="Kosten">
+                <button onclick=addrep()>Add</button>
+            </div>
+        </div>
+    </div>
+</div>

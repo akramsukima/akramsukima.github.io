@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mina | Dashboard</title>
+</head>
+    <body>
+        <div class="loadingscreen">
+            <div class="loader"></div>
+        </div>
+        <div class="body">
+            <div class="nav">
+                <nav>
+                    <div class="container">
+                        <a href="/home/"><h1>Mina</h1></a>
+                
+                        <div class="menu">
+                            <!-- <a href="/" class="is-active">Kaufen</a> -->
+                            <a href="/dashboard/home/">Aufträge</a>
+                            <a href="/dashboard/devices/">Geräte</a>
+                            <a href="/home/">Zurück</a>
+                        </div>
+                
+                
+                        <button class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </nav>
+                
+                <div class="mobile-menu">
+                    <a href="/dashboard/home/">Aufträge</a>
+                    <a href="/dashboard/devices/">Geräte</a>
+                    <a href="/home/">Zurück</a>
+                </div>
+            </div>
+        </div>
+        
+        <script src="/scripts/fetchHtml.js"></script>
+        <script src="/loadingscreen/loadingscreen.js"></script>
+        <script src="/navbar/navbar.js"></script>
+
+        <link rel="stylesheet" href="/navbar/navbar.css">
+        <link rel="stylesheet" href="/loadingscreen/loadingscreen.css">
+        
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+        <script>
+            const config = {
+                apiKey: "AIzaSyDhgfmLU_QpKWoyrWLhNsngY7sCQiZucs4",
+                authDomain: "handyshop-c2e14.firebaseapp.com",
+                databaseURL: "https://handyshop-c2e14.firebaseio.com",
+                projectId: "handyshop-c2e14",
+            };
+            firebase.initializeApp(config)
+            const db = firebase.firestore()
+            const auth = firebase.auth();
+        </script>
+
+        <script src="js/main.js"></script>
+        <link rel="stylesheet" href="home.css">
+    </body>
+</html>
