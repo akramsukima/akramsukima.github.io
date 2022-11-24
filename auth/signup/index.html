@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <title>Mina | Login</title>
+    <title>Mina | Konto erstellen</title>
 </head>
 <body>
-    <div class="nav"></div>
+    <div class="loadingscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="body">
+        <div class="nav"></div>
 
-
-
-
-    <div id="LoginForm">
-        <h2>Konto erstellen</h2>
-        <input id="name" type="text" placeholder="Vor- und Nachname">
-        <input id="user" type="text" placeholder="Email">
-        <input id="pass" type="password" placeholder="Passwort">
-        <button id="submit">Weiter</button>
-        <h6>Sie haben bereits ein Konto? <a href="../login/">Hier gehts zur Anmeldung</a></h6>
+        <div id="LoginForm">
+            <h2>Konto erstellen</h2>
+            <input id="name" type="text" placeholder="Vor- und Nachname">
+            <input id="user" type="text" placeholder="Email">
+            <input id="pass" type="password" placeholder="Passwort">
+            <h5 id="error"></h5>
+            <button id="submit">Weiter</button>
+            <h6>Sie haben bereits ein Konto? <br><a href="../login/">Hier gehts zur Anmeldung</a></h6>
+        </div>
     </div>
 
+    <script src="../../scripts/fetchHtml.js"></script>
+    <script src="../../loadingscreen/loadingscreen.js"></script>
+    <script src="../../navbar/navbar.js"></script>
+
+    <link rel="stylesheet" href="../../navbar/navbar.css">
+    <link rel="stylesheet" href="../../loadingscreen/loadingscreen.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
@@ -38,10 +45,9 @@
         const db = firebase.firestore()
         const auth = firebase.auth();
     </script>
-    <script src="../../scripts/fetchHtml.js"></script>
+
+
     <script src="signup.js"></script>
-    <link rel="stylesheet" href="../../navbar/navbar.css">
     <link rel="stylesheet" href="signup.css">
-    <script src="../../navbar/navbar.js"></script>
 </body>
 </html>

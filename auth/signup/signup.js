@@ -1,22 +1,25 @@
-GetHtml('../../navbar/structure.html').then(x => {
-    document.querySelector('.nav').innerHTML = x
-    addNavListener()
-})
+loadingStart();
+
 auth.onAuthStateChanged((user) => {
-    if (user) {
-        window.location.href = '/'
-    } else {
-        document.getElementById('myAccount').href = '/auth/login/'
-        document.getElementById('myAccountMobile').href = '/auth/login/'
-    }
+    GetHtml('../../navbar/structure.html').then(x => {
+        document.querySelector('.nav').innerHTML = x
+        addNavListener()
+    }).then(()=>{
+        if (user) {
+            window.location.href = '/'
+        } else {
+            document.getElementById('myAccount').href = '/auth/signup/'
+            document.getElementById('myAccountMobile').href = '/auth/signup/'
+        }
+        loadingEnd()
+    })
 });
-function isEmail(emailAdress){
-    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (emailAdress.match(regex)) 
-        return true; 
-    else 
-        return false; 
-}
+
+function error(message){
+    document.querySelector('#error').style.display = 'block'
+    document.querySelector('#error').innerHTML = message
+} 
+
 
 const signup = document.querySelector('#submit')
 signup.addEventListener('click', ()=>{
@@ -25,7 +28,7 @@ signup.addEventListener('click', ()=>{
     const pass = document.querySelector('#pass').value
 
     if (name+user+pass == '') {
-        alert('Bitte füllen sie alle Felder aus')
+        error('Bitte alle Felder ausfüllen.')
     } else {
         auth.createUserWithEmailAndPassword(user, pass).then((uc)=>{
             db.collection("UserData").doc(uc.user.uid).set({
@@ -38,8 +41,8 @@ signup.addEventListener('click', ()=>{
                 console.error("Error writing document: ", error);
             });
         }).catch((error) => {
-            var errorMessage = error.message;
-            alert(errorMessage)
+            document.querySelector('#error').style.display = 'block'
+            document.querySelector('#error').innerHTML = 'Email ungültig oder Password zu kurz.'
         });
     }
 })

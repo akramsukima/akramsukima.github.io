@@ -1,20 +1,19 @@
-var uid = null;
-
+loadingStart();
 
 auth.onAuthStateChanged((user) => {
-    if (user) {
-        uid = user.uid
-        if (uid == "LPIR3dFJxXhRlnesiSwqp7uOTok1") {
-            document.querySelector('.menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
-            document.querySelector('.mobile-menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+    GetHtml('../navbar/structure.html').then(x => {
+        document.querySelector('.nav').innerHTML = x
+        addNavListener()
+    }).then(()=>{
+        if (user) {
+            if (user.uid == 'LPIR3dFJxXhRlnesiSwqp7uOTok1') {
+                document.querySelector('.menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+                document.querySelector('.mobile-menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+            }
+        } else {
+            document.getElementById('myAccount').href = '/auth/login/'
+            document.getElementById('myAccountMobile').href = '/auth/login/'
         }
-    } else {
-        document.getElementById('myAccount').href = '/auth/login/'
-        document.getElementById('myAccountMobile').href = '/auth/login/'
-    }
+        loadingEnd()
+    })
 });
-
-GetHtml('../navbar/structure.html').then(x => {
-    document.querySelector('.nav').innerHTML = x
-    addNavListener()
-})

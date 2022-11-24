@@ -1,27 +1,25 @@
-var uid = null;
-
+loadingStart();
 
 auth.onAuthStateChanged((user) => {
-    if (user) {
-        uid = user.uid
-        if (uid == "LPIR3dFJxXhRlnesiSwqp7uOTok1") {
-            document.querySelector('.menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
-            document.querySelector('.mobile-menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+    GetHtml('../../navbar/structure.html').then(x => {
+        document.querySelector('.nav').innerHTML = x
+        addNavListener()
+    }).then(()=>{
+        if (user) {
+            if (user.uid == "LPIR3dFJxXhRlnesiSwqp7uOTok1") {
+                document.querySelector('.menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+                document.querySelector('.mobile-menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+            }
+            document.querySelector('#created').innerHTML = "Beigetreten am: " + user.metadata.creationTime        
+            document.querySelector('#last').innerHTML = "Zuletzt gesehen: " + user.metadata.lastSignInTime
+            document.querySelector('#email').innerHTML = "Email: " + user.email        
+        } else {
+            window.location.href = "/home/" 
         }
-
-        document.querySelector('#created').innerHTML = "Beigetreten am: " + user.metadata.creationTime        
-        document.querySelector('#last').innerHTML = "Zuletzt gesehen: " + user.metadata.lastSignInTime
-        document.querySelector('#email').innerHTML = "Email: " + user.email        
-        
-    } else {
-        window.location.href = "/home" 
-    }
+        loadingEnd()
+    })
 });
 
-GetHtml('../../navbar/structure.html').then(x => {
-    document.querySelector('.nav').innerHTML = x
-    addNavListener()
-})
 const signoutbtn = document.querySelector('#signout')
 signoutbtn.addEventListener('click', ()=> {
     auth.signOut().then(() => {

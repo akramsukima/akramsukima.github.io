@@ -51,6 +51,12 @@ body {
     margin-top: 90px;
     font-size: small ;
 }
+#LoginForm h5 {
+    color: rgb(180, 82, 82);
+    margin-top: 20px;
+    margin-bottom: -20px;
+    display: none;
+}
 
 @media (min-width: 768px) {
     #LoginForm {

@@ -1,25 +1,25 @@
-loadingStart()
+loadingStart();
 
-GetHtml('../../navbar/structure.html').then(x => {
-    document.querySelector('.nav').innerHTML = x
-    addNavListener()
-})
+
 auth.onAuthStateChanged((user) => {
-    if (user) {
-        window.location.href = '/'
-    } else {
-        document.getElementById('myAccount').href = '/auth/login/'
-        document.getElementById('myAccountMobile').href = '/auth/login/'
+    GetHtml('../../navbar/structure.html').then(x => {
+        document.querySelector('.nav').innerHTML = x
+        addNavListener()
+    }).then(()=>{
+        if (user) {
+            window.location.href = '/'
+        } else {
+            document.getElementById('myAccount').href = '/auth/login/'
+            document.getElementById('myAccountMobile').href = '/auth/login/'
+        }
         loadingEnd()
-    }
+    })
 });
-function isEmail(emailAdress){
-    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (emailAdress.match(regex)) 
-        return true; 
-    else 
-        return false; 
-}
+
+function error(message){
+    document.querySelector('#error').style.display = 'block'
+    document.querySelector('#error').innerHTML = message
+} 
 
 const signup = document.querySelector('#submit')
 signup.addEventListener('click', ()=>{
@@ -27,13 +27,13 @@ signup.addEventListener('click', ()=>{
     const pass = document.querySelector('#pass').value
 
     if (user+pass == '') {
-        alert('Bitte füllen sie alle Felder aus')
+        error('Bitte alle Felder ausfüllen.')
     } else {
         auth.signInWithEmailAndPassword(user, pass).then((uc) => {
             window.location.href = '../'
         }).catch((error) => {
-            var errorMessage = error.message;
-            console.log(errorMessage)
+            document.querySelector('#error').style.display = 'block'
+            document.querySelector('#error').innerHTML = 'Email und/oder Password falsch.'
         });
     }
 })

@@ -6,24 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mina | Mein Konto</title>
 </head>
-    <body>
+<body>
+    <div class="loadingscreen">
+        <div class="loader"></div>
+    </div>
+    <div class="body">
         <div class="nav"></div>
-        
-
-
-
 
         <div class="page">
-            <h2>Mein Konto</h2>
-    
-    
             <div class="info box">
                 <h3>Konto Daten</h3>
-    
                 <h4 id="created">Beigetreten am: </h4>
                 <h4 id="last">Zuletzt gesehen: </h4>
                 <h4 id="email">Email: </h4>
-    
             </div>
     
             <div class="resetpassword box" >
@@ -37,36 +32,34 @@
             <div class="signout box">
                 <button id="signout">Logout</button>
             </div>
-            
         </div>
+    </div>
 
 
+    <script src="../../scripts/fetchHtml.js"></script>
+    <script src="../../loadingscreen/loadingscreen.js"></script>
+    <script src="../../navbar/navbar.js"></script>
+
+    <link rel="stylesheet" href="../../navbar/navbar.css">
+    <link rel="stylesheet" href="../../loadingscreen/loadingscreen.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
+        const config = {
+            apiKey: "AIzaSyDhgfmLU_QpKWoyrWLhNsngY7sCQiZucs4",
+            authDomain: "handyshop-c2e14.firebaseapp.com",
+            databaseURL: "https://handyshop-c2e14.firebaseio.com",
+            projectId: "handyshop-c2e14",
+        };
+        firebase.initializeApp(config)
+        const db = firebase.firestore()
+        const auth = firebase.auth();
+    </script>
 
 
-
-
-
-
-
-
-        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
-        <script>
-            const config = {
-                apiKey: "AIzaSyDhgfmLU_QpKWoyrWLhNsngY7sCQiZucs4",
-                authDomain: "handyshop-c2e14.firebaseapp.com",
-                databaseURL: "https://handyshop-c2e14.firebaseio.com",
-                projectId: "handyshop-c2e14",
-            };
-            firebase.initializeApp(config)
-            const db = firebase.firestore()
-            const auth = firebase.auth();
-        </script>
-        <script src="../../scripts/fetchHtml.js"></script>
-        <script src="konto.js"></script>
-        <link rel="stylesheet" href="../../navbar/navbar.css">
-        <link rel="stylesheet" href="konto.css">
-        <script src="../../navbar/navbar.js"></script>
-    </body>
+    <script src="konto.js"></script>
+    <link rel="stylesheet" href="konto.css">
+</body>
 </html>
