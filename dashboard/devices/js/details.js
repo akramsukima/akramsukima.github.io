@@ -28,7 +28,9 @@ function opendetails(id, Devices) {
         for (var key2 of Object.keys(Devices[id].Reperaturen)) {
             document.querySelector(devDiv + ".list").innerHTML += `
             <div class="repitem">
-                <h4>${key2}</h4>
+                <div id="repname">
+                    <h4>${key2}</h4>
+                </div>
                 <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
             </div>
             `

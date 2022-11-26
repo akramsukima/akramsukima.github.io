@@ -37,11 +37,15 @@ db.collection('Devices').doc('Iphones').onSnapshot({
     document.querySelector('.WFS').innerHTML = ""
     GetDevices(doc).then((res) => {
         for (var key of Object.keys(res.Devices)) {
+            var PhoneValue = Number(res.Devices[key].Kaufpreis)
+            for (var k of Object.keys(res.Devices[key].Reperaturen)) {
+                PhoneValue += res.Devices[key].Reperaturen[k]
+            }
             let html = `
             <div id="device" onclick=details('${key}')>
                 <img src="${res.Devices[key].Image}">
                 <h3>${res.Devices[key].Model}</h3>
-                <h6>${res.Devices[key].Storage}gb ${res.Devices[key].Batterie}%</h6>
+                <h6>ID: ${key} ${res.Devices[key].Storage}gb ${res.Devices[key].Batterie}% ${PhoneValue}€</h6>
             </div>
             `
             document.querySelector('.' + Stats[res.Devices[key].Status]).innerHTML += html

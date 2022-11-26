@@ -19,6 +19,8 @@
     background-color: #ffffff;
     padding: 15px;
     border-radius: 7.5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     overflow: scroll;
 }
 .details-mobile img {
@@ -130,6 +132,14 @@
     padding: 5px;
     border-radius: 5px;
     margin-top: 5px;
+}
+.details-mobile .reperatur .list .repitem #repname {
+    display: flex;
+}
+.details-mobile .reperatur .list .repitem #repname button {
+    margin-right: 5px;
+    background-color: #ffffff;
+    border: none;
 }
 .details-mobile .reperatur #tot {
     text-align: right;

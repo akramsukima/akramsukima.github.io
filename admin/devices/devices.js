@@ -29,6 +29,7 @@ function details(id) {
         for (var key2 of Object.keys(Devices[id].Reperaturen)) {
             document.querySelector(".list").innerHTML += `
             <div class="repitem">
+                <button onlick=delrep('${key2}')>X</button>
                 <h4>${key2}</h4>
                 <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
             </div>
