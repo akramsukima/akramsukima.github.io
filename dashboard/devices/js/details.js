@@ -7,7 +7,6 @@ function opendetails(id, Devices) {
         document.querySelector('.details-pc').style.display = 'block'
         devDiv = 'div.details-pc '
     }
-    console.log(Devices[id], id,Devices[id].Image)
     document.querySelector('.body').style.position = 'fixed'
     document.querySelector(devDiv + '#cover').src = Devices[id].Image
     document.querySelector(devDiv + "#name").value = ""
@@ -35,7 +34,6 @@ function opendetails(id, Devices) {
             `
             totalrep += Devices[id].Reperaturen[key2]
         }
-        console.log(Devices[id].Reperaturen)
         document.querySelector(devDiv + ".list").innerHTML += `
             <h5 id="tot">Total: ${totalrep} Euro</h5>`
         if (totalrep == 0) {
@@ -74,11 +72,10 @@ function opendetails(id, Devices) {
 function cancelDetails() {
     if (document.documentElement.clientWidth < 768) {
         document.querySelector('.details-mobile').style.display = 'none'
-        document.querySelector('.body').style.position = 'absolute'
     } else {
         document.querySelector('.details-pc').style.display = 'none'
-        document.querySelector('.body').style.position = 'absolute'
     }
+    document.querySelector('.body').style.position = 'absolute'
 }
 function failedDetails() {
     var devDiv = ''
@@ -194,10 +191,12 @@ function closeDetails() {
             batterie: document.querySelector(devDiv + '.batterie').value,
             image: document.querySelector(devDiv + '.bild').value,
             status: Devices[id].Status,
-            notes: document.querySelector(devDiv + '#notes').value,
+            notes: document.querySelector(devDiv + '#textarea').value,
             reperaturen: Devices[id].Reperaturen
         }
-    }, {merge: true})
+    }, {merge: true}).catch((error) => {
+        console.error(error);
+      });
 }
 function addrep() {
     var devDiv = ''
