@@ -13,7 +13,6 @@
     transition: 0.3s;
 }
 #device h3, h6 {
-    white-space: nowrap;
     font-weight: 500;
 }
 #device img {

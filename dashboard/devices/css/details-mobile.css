@@ -1,0 +1,170 @@
+.details-mobile {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.185);
+}
+.details-mobile .page {
+    background-color: aqua;
+    text-align: center;
+    position:fixed;
+    z-index: 1001;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 7.5px;
+    overflow: scroll;
+}
+.details-mobile img {
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    object-fit:scale-down;
+    /* border-bottom: 1px solid rgb(165, 165, 165); */
+}
+.details-mobile .info {
+    text-align: left;
+}
+.details-mobile #title {
+    border-top: 1px solid rgb(165, 165, 165);
+    justify-content: space-between;
+}
+.details-mobile #model {
+    font-size: 20px;
+    text-align: center;
+    margin-block: 10px;
+}
+.details-mobile #buttons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-row-gap: 15px;
+    grid-column-gap: 4%;
+}
+.details-mobile #buttons button {
+    padding: 5px;
+    border-radius: 7.5px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.295);
+    font-weight: 400;
+    text-align: center;
+}
+.details-mobile #info {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.details-mobile #undertitle {
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.details-mobile .Input {
+    display: flex;
+    margin-bottom: 7.5px;
+} 
+.details-mobile .Input h4{
+    width: 60%;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 30px;
+}
+.details-mobile .Input input{
+    width: 100%;
+    margin-left: 10px;
+    height: 30px;
+    padding-left: 5px;
+    border: 1px solid rgb(143, 143, 143);
+}
+.details-mobile #notes {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 30px;
+}
+.details-mobile #notes textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+}
+.details-mobile .reperatur {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 30px;
+}
+.details-mobile .reperatur .list {
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 5px rgba(0,0,0,0.2);
+}
+.details-mobile .reperatur .list h5 {
+    font-weight: 200;
+    line-height: 20px;
+}
+.details-mobile .reperatur .list h4 {
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 100;
+}
+.details-mobile .reperatur .list .repitem{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.details-mobile .reperatur #tot {
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+.details-mobile .addrep {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.details-mobile .addrep input {
+    height: 30px;
+    border: 1px solid var(--d);
+}
+.details-mobile .addrep #name {
+    padding-left: 5px;
+    width: 50%;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.details-mobile .addrep #cost {
+    width: 29%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-left: 1%;
+}
+.details-mobile .addrep button {
+    width: 18%;
+    height: 30px;
+    padding-inline: 5px;
+    margin-inline: 2.5px;
+    border-radius: 7.5px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.295);
+    font-weight: 400;
+}

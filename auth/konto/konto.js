@@ -7,8 +7,8 @@ auth.onAuthStateChanged((user) => {
     }).then(()=>{
         if (user) {
             if (user.uid == "LPIR3dFJxXhRlnesiSwqp7uOTok1") {
-                document.querySelector('.menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
-                document.querySelector('.mobile-menu').innerHTML += '<a href="/admin/devices">Dashboard</a>'
+                document.querySelector('.menu').innerHTML += '<a href="/dashboard/devices/">Dashboard</a>'
+                document.querySelector('.mobile-menu').innerHTML += '<a href="/dashboard/devices/">Dashboard</a>'
             }
             document.querySelector('#created').innerHTML = "Beigetreten am: " + user.metadata.creationTime        
             document.querySelector('#last').innerHTML = "Zuletzt gesehen: " + user.metadata.lastSignInTime

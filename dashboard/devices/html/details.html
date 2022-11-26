@@ -1,0 +1,68 @@
+<div class="page">
+    <img id="cover">
+    <div class="info">
+        <div id="title">
+            <h2 id="model">Iphone XS</h2>
+            <div id="buttons">
+                <button id="cancelDetails" onclick=cancelDetails()>Abbrechen</button>
+                <button id="failedDetails" onclick=failedDetails()>Fehlgeschlagen</button>
+                <button id="NextStep" onclick=NextStep()>Nächster Schritt</button>
+                <button id="closeDetails" onclick=closeDetails()>Speichern</button>
+            </div>
+        </div>
+        <div id="info">
+            <h3 id="undertitle">Infos</h3>
+            <div class="Input">
+                <h4>ID</h4>
+                <input type="text" class="id" readonly>
+            </div>
+            <div class="Input">
+                <h4>IMEI</h4>
+                <input type="text" class="imei">
+            </div>
+            <div class="Input">
+                <h4>KaufPreis</h4>
+                <input type="number" class="kaufpreis">
+            </div>
+            <div class="Input">
+                <h4>SerienNummer</h4>
+                <input type="text" class="seriennummer">
+            </div>
+            <div class="Input">
+                <h4>Speicher</h4>
+                <input type="number" class="speicher">
+            </div>
+            <div class="Input">
+                <h4>Batterie</h4>
+                <input type="number" class="batterie">
+            </div>
+            <div class="Input">
+                <h4>Bild</h4>
+                <input type="text" class="bild">
+            </div>
+        </div>
+        <div id="notes">
+            <h3 id="undertitle">Notizen</h3>
+            <textarea></textarea>
+        </div>
+
+        <div class="reperatur">
+            <h3 id="undertitle">Reperaturen</h3>
+            <div class="list">
+                <div class="repitem">
+                    <h4>Display</h4>
+                    <h5>20 Euro</h5>
+                </div>
+                <div class="repitem">
+                    <h4>Backcover</h4>
+                    <h5>50 Euro</h5>
+                </div>
+            </div>
+            <div class="addrep">
+                <input id="name" type="text"   placeholder="Name">
+                <input id="cost" type="number" placeholder="Kosten">
+                <button onclick=addrep()>Add</button>
+            </div>
+        </div>
+    </div>
+</div>

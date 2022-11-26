@@ -11,12 +11,10 @@ function details(id) {
     opendetails(id, Devices)
 }
 
-
-
-
 auth.onAuthStateChanged((user) => {
-    GetHtml('html/details-pc.html').then(x => {
+    GetHtml('html/details.html').then(x => {
         document.querySelector('.details-pc').innerHTML = x
+        document.querySelector('.details-mobile').innerHTML = x
     })
     GetHtml('html/navbar.html').then(x => {
         document.querySelector('.nav').innerHTML = x

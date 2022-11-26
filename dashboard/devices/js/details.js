@@ -1,72 +1,105 @@
 function opendetails(id, Devices) {
-    if (client.width < 768) {
+    var devDiv = ''
+    if (document.documentElement.clientWidth < 768) {
         document.querySelector('.details-mobile').style.display = 'block'
+        devDiv = 'div.details-mobile '
     } else {
         document.querySelector('.details-pc').style.display = 'block'
-        document.querySelector('.body').style.position = 'fixed'
-        document.querySelector('#cover').src = Devices[id].Image
-        document.querySelector("#name").value = ""
-        document.querySelector("#model").innerHTML = Devices[id].Model
-        document.querySelector("#cost").value = ""
-        document.querySelector('.id').value = id
-        document.querySelector('.imei').value = Devices[id].IMEI
-        document.querySelector('.kaufpreis').value = Devices[id].Kaufpreis
-        document.querySelector('.seriennummer').value = Devices[id].Seriannummer
-        document.querySelector('.speicher').value = Devices[id].Storage
-        document.querySelector('.batterie').value = Devices[id].Batterie
-        document.querySelector('.bild').value = Devices[id].Image
-        document.querySelector(".list").innerHTML = ""
-        document.querySelector('#notes').value = Devices[id].Notes
-        if (Devices[id].Status == '1') {
-            var totalrep = 0
-            document.querySelector(".reperatur").style.display = 'block'
-            for (var key2 of Object.keys(Devices[id].Reperaturen)) {
-                document.querySelector(".list").innerHTML += `
-                <div class="repitem">
-                    <h4>${key2}</h4>
-                    <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
-                </div>
-                `
-                totalrep += Devices[id].Reperaturen[key2]
-            }
-            document.querySelector(".list").innerHTML += `
-                <h5 id="tot">Total: ${totalrep} Euro</h5>`
-            if (totalrep == 0) {
-                document.querySelector(".list").innerHTML = `
-                <h5>Noch keine Reperaturen gemeldet</h5>
-                `
-            }
-        } else {
-            document.querySelector(".reperatur").style.display = 'none'
+        devDiv = 'div.details-pc '
+    }
+    console.log(Devices[id], id,Devices[id].Image)
+    document.querySelector('.body').style.position = 'fixed'
+    document.querySelector(devDiv + '#cover').src = Devices[id].Image
+    document.querySelector(devDiv + "#name").value = ""
+    document.querySelector(devDiv + "#model").innerHTML = Devices[id].Model
+    document.querySelector(devDiv + "#cost").value = ""
+    document.querySelector(devDiv + '.id').value = id
+    document.querySelector(devDiv + '.imei').value = Devices[id].IMEI
+    document.querySelector(devDiv + '.kaufpreis').value = Devices[id].Kaufpreis
+    document.querySelector(devDiv + '.seriennummer').value = Devices[id].Seriannummer
+    document.querySelector(devDiv + '.speicher').value = Devices[id].Storage
+    document.querySelector(devDiv + '.batterie').value = Devices[id].Batterie
+    document.querySelector(devDiv + '.bild').value = Devices[id].Image
+    document.querySelector(devDiv + ".list").innerHTML = ""
+    document.querySelector(devDiv + '#notes').value = Devices[id].Notes
+    if (Devices[id].Status == '1') {
+        var totalrep = 0
+        document.querySelector(devDiv + ".reperatur").style.display = 'block'
+        document.querySelector(devDiv + ".addrep").style.display = 'flex'
+        for (var key2 of Object.keys(Devices[id].Reperaturen)) {
+            document.querySelector(devDiv + ".list").innerHTML += `
+            <div class="repitem">
+                <h4>${key2}</h4>
+                <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
+            </div>
+            `
+            totalrep += Devices[id].Reperaturen[key2]
         }
-        if (Devices[id].Status == '2') {
-            document.querySelector("#NextStep").innerHTML = "Sold"
-        } else {
-            document.querySelector("#NextStep").innerHTML = "Next Step"
+        console.log(Devices[id].Reperaturen)
+        document.querySelector(devDiv + ".list").innerHTML += `
+            <h5 id="tot">Total: ${totalrep} Euro</h5>`
+        if (totalrep == 0) {
+            document.querySelector(devDiv + ".list").innerHTML = `
+            <h5>Noch keine Reperaturen gemeldet</h5>
+            `
         }
+    } else {
+        document.querySelector(devDiv + ".reperatur").style.display = 'none'
+    }
+    if (Devices[id].Status == '2') {
+        document.querySelector(devDiv + "#NextStep").innerHTML = "Verkauft"
+        var totalrep = 0
+        document.querySelector(devDiv + ".reperatur").style.display = 'block'
+        document.querySelector(devDiv + ".addrep").style.display = 'none'
+        for (var key2 of Object.keys(Devices[id].Reperaturen)) {
+            document.querySelector(devDiv + ".list").innerHTML += `
+            <div class="repitem">
+                <h4>${key2}</h4>
+                <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
+            </div>
+            `
+            totalrep += Devices[id].Reperaturen[key2]
+        }
+        document.querySelector(devDiv + ".list").innerHTML += `
+            <h5 id="tot">Total: ${totalrep} Euro</h5>`
+        if (totalrep == 0) {
+            document.querySelector(devDiv + ".list").innerHTML = `
+            <h5>Noch keine Reperaturen gemeldet</h5>
+            `
+        }
+    } else {
+        document.querySelector(devDiv + "#NextStep").innerHTML = "Nächster Schritt"
     }
 }
 function cancelDetails() {
-    if (client.width < 768) {} else {
+    if (document.documentElement.clientWidth < 768) {
+        document.querySelector('.details-mobile').style.display = 'none'
+        document.querySelector('.body').style.position = 'absolute'
+    } else {
         document.querySelector('.details-pc').style.display = 'none'
         document.querySelector('.body').style.position = 'absolute'
     }
 }
 function failedDetails() {
-    if (client.width < 768) {} else {
+    var devDiv = ''
+    if (document.documentElement.clientWidth < 768) {
+        document.querySelector('.details-mobile').style.display = 'none'
+        devDiv = 'div.details-mobile '
+    } else {
         document.querySelector('.details-pc').style.display = 'none'
-        document.querySelector('.body').style.position = 'absolute'
+        devDiv = 'div.details-pc '
     }
-    var id = document.querySelector('.id').value
+    document.querySelector('.body').style.position = 'absolute'
+    var id = document.querySelector(devDiv + '.id').value
     db.collection('Devices').doc('failed').set({
         [id]: {
-            IMEI: document.querySelector('.imei').value,
-            KaufPreis: document.querySelector('.kaufpreis').value,
+            IMEI: document.querySelector(devDiv + '.imei').value,
+            KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
             Model: Devices[id].Model,
-            Seriennummer: document.querySelector('.seriennummer').value,
-            Storage: document.querySelector('.speicher').value,
-            batterie: document.querySelector('.batterie').value,
-            image: document.querySelector('.bild').value,
+            Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
+            Storage: document.querySelector(devDiv + '.speicher').value,
+            batterie: document.querySelector(devDiv + '.batterie').value,
+            image: document.querySelector(devDiv + '.bild').value,
             status: Devices[id].Status,
             notes: Devices[id].Notes,
             reperaturen: Devices[id].Reperaturen
@@ -78,21 +111,26 @@ function failedDetails() {
     })
 }
 function NextStep() {
-    if (client.width < 768) {} else {
+    var devDiv = ''
+    if (document.documentElement.clientWidth < 768) {
+        document.querySelector('.details-mobile').style.display = 'none'
+        devDiv = 'div.details-mobile '
+    } else {
         document.querySelector('.details-pc').style.display = 'none'
-        document.querySelector('.body').style.position = 'absolute'
+        devDiv = 'div.details-pc '
     }
-    var id = document.querySelector('.id').value
+    document.querySelector('.body').style.position = 'absolute'
+    var id = document.querySelector(devDiv + '.id').value
     if (Devices[id].Status == "2") {
         db.collection('Devices').doc('sold').set({
             [id]: {
-                IMEI: document.querySelector('.imei').value,
-                KaufPreis: document.querySelector('.kaufpreis').value,
+                IMEI: document.querySelector(devDiv + '.imei').value,
+                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
                 Model: Devices[id].Model,
-                Seriennummer: document.querySelector('.seriennummer').value,
-                Storage: document.querySelector('.speicher').value,
-                batterie: document.querySelector('.batterie').value,
-                image: document.querySelector('.bild').value,
+                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
+                Storage: document.querySelector(devDiv + '.speicher').value,
+                batterie: document.querySelector(devDiv + '.batterie').value,
+                image: document.querySelector(devDiv + '.bild').value,
                 status: Devices[id].Status,
                 notes: Devices[id].Notes,
                 reperaturen: Devices[id].Reperaturen
@@ -105,13 +143,13 @@ function NextStep() {
     if (Devices[id].Status == "1") {
         db.collection('Devices').doc('Iphones').set({
             [id]: {
-                IMEI: document.querySelector('.imei').value,
-                KaufPreis: document.querySelector('.kaufpreis').value,
+                IMEI: document.querySelector(devDiv + '.imei').value,
+                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
                 Model: Devices[id].Model,
-                Seriennummer: document.querySelector('.seriennummer').value,
-                Storage: document.querySelector('.speicher').value,
-                batterie: document.querySelector('.batterie').value,
-                image: document.querySelector('.bild').value,
+                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
+                Storage: document.querySelector(devDiv + '.speicher').value,
+                batterie: document.querySelector(devDiv + '.batterie').value,
+                image: document.querySelector(devDiv + '.bild').value,
                 status: "2",
                 notes: Devices[id].Notes,
                 reperaturen: Devices[id].Reperaturen
@@ -121,13 +159,13 @@ function NextStep() {
     if (Devices[id].Status == "0") { 
         db.collection('Devices').doc('Iphones').set({
             [id]: {
-                IMEI: document.querySelector('.imei').value,
-                KaufPreis: document.querySelector('.kaufpreis').value,
+                IMEI: document.querySelector(devDiv + '.imei').value,
+                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
                 Model: Devices[id].Model,
-                Seriennummer: document.querySelector('.seriennummer').value,
-                Storage: document.querySelector('.speicher').value,
-                batterie: document.querySelector('.batterie').value,
-                image: document.querySelector('.bild').value,
+                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
+                Storage: document.querySelector(devDiv + '.speicher').value,
+                batterie: document.querySelector(devDiv + '.batterie').value,
+                image: document.querySelector(devDiv + '.bild').value,
                 status: "1",
                 notes: Devices[id].Notes,
                 reperaturen: Devices[id].Reperaturen
@@ -136,23 +174,56 @@ function NextStep() {
     }
 }
 function closeDetails() {
-    if (client.width < 768) {} else {
+    var devDiv = ''
+    if (document.documentElement.clientWidth < 768) {
+        document.querySelector('.details-mobile').style.display = 'none'
+        devDiv = 'div.details-mobile '
+    } else {
         document.querySelector('.details-pc').style.display = 'none'
-        document.querySelector('.body').style.position = 'absolute'
+        devDiv = 'div.details-pc '
     }
-    var id = document.querySelector('.id').value
+    document.querySelector('.body').style.position = 'absolute'
+    var id = document.querySelector(devDiv + '.id').value
     db.collection('Devices').doc('Iphones').set({
         [id]: {
-            IMEI: document.querySelector('.imei').value,
-            KaufPreis: document.querySelector('.kaufpreis').value,
+            IMEI: document.querySelector(devDiv + '.imei').value,
+            KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
             Model: Devices[id].Model,
-            Seriennummer: document.querySelector('.seriennummer').value,
-            Storage: document.querySelector('.speicher').value,
-            batterie: document.querySelector('.batterie').value,
-            image: document.querySelector('.bild').value,
+            Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
+            Storage: document.querySelector(devDiv + '.speicher').value,
+            batterie: document.querySelector(devDiv + '.batterie').value,
+            image: document.querySelector(devDiv + '.bild').value,
             status: Devices[id].Status,
-            notes: document.querySelector('#notes').value,
+            notes: document.querySelector(devDiv + '#notes').value,
             reperaturen: Devices[id].Reperaturen
         }
     }, {merge: true})
+}
+function addrep() {
+    var devDiv = ''
+    if (document.documentElement.clientWidth < 768) {
+        devDiv = 'div.details-mobile '
+    } else {
+        devDiv = 'div.details-pc '
+    }
+    var name = document.querySelector(devDiv + "#name").value
+    var cost = document.querySelector(devDiv + "#cost").value
+    var id = document.querySelector(devDiv + '.id').value
+    if (name+cost != '') {
+        Devices[id].Reperaturen[name] = Number(cost)
+        var totalrep = 0
+        document.querySelector(devDiv + ".list").innerHTML = ''
+        for (var key2 of Object.keys(Devices[id].Reperaturen)) {
+            document.querySelector(devDiv + ".list").innerHTML += `
+            <div class="repitem">
+                <h4>${key2}</h4>
+                <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
+            </div>
+            `
+            totalrep += Devices[id].Reperaturen[key2]
+        }
+        document.querySelector(devDiv + ".list").innerHTML += `<h5 id="tot">Total: ${totalrep} Euro</h5>`
+    }
+    document.querySelector(devDiv + "#cost").value = ""
+    document.querySelector(devDiv + "#name").value = ""
 }
