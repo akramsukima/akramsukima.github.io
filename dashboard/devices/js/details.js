@@ -21,7 +21,7 @@ function opendetails(id, Devices) {
     document.querySelector(devDiv + '.batterie').value = Devices[id].Batterie
     document.querySelector(devDiv + '.bild').value = Devices[id].Image
     document.querySelector(devDiv + ".list").innerHTML = ""
-    document.querySelector(devDiv + '#notes').value = Devices[id].Notes
+    document.querySelector(devDiv + '#textarea').value = Devices[id].Notes
     if (Devices[id].Status == '1') {
         var totalrep = 0
         document.querySelector(devDiv + ".reperatur").style.display = 'block'
