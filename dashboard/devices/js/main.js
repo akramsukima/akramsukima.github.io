@@ -12,6 +12,12 @@ function details(id) {
 }
 
 auth.onAuthStateChanged((user) => {
+    GetHtml('html/page.html').then(x => {
+        document.querySelector('.body').innerHTML += x
+    })
+    GetHtml('html/AddDevice.html').then(x => {
+        document.querySelector('.add-device-mobile').innerHTML = x
+    })
     GetHtml('html/details.html').then(x => {
         document.querySelector('.details-pc').innerHTML = x
         document.querySelector('.details-mobile').innerHTML = x

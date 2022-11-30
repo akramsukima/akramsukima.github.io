@@ -30,7 +30,7 @@ signup.addEventListener('click', ()=>{
         error('Bitte alle Felder ausfüllen.')
     } else {
         auth.signInWithEmailAndPassword(user, pass).then((uc) => {
-            window.location.href = '../'
+            window.location.href = '/'
         }).catch((error) => {
             document.querySelector('#error').style.display = 'block'
             document.querySelector('#error').innerHTML = 'Email und/oder Password falsch.'

@@ -35,7 +35,7 @@ signup.addEventListener('click', ()=>{
                 name: name,
                 email: user   
             }).then(() => {
-                window.location.href = '../'
+                window.location.href = '/'
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);

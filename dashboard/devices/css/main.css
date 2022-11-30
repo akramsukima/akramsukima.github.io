@@ -21,15 +21,15 @@ body {
     font-weight: 200;
 }
 
-#search {
+#tools {
     padding: 10px;
 }
 #search input {
     height: 30px;
     width: 80%;
 }
-#search button {
-    width: 15%;
+#tools button {
+    width: 30%;
     height: 30px;
     padding-inline: 5px;
     margin-inline: 2.5px;
