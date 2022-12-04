@@ -109,6 +109,34 @@ function failedDetails() {
         [id]: firebase.firestore.FieldValue.delete()
     })
 }
+function lastStep() {
+    var devDiv = ''
+    if (document.documentElement.clientWidth < 768) {
+        document.querySelector('.details-mobile').style.display = 'none'
+        devDiv = 'div.details-mobile '
+    } else {
+        document.querySelector('.details-pc').style.display = 'none'
+        devDiv = 'div.details-pc '
+    }
+    document.querySelector('.body').style.position = 'absolute'
+    var id = document.querySelector(devDiv + '.id').value
+    if (!Number(Devices[id].Status) == 0) {
+        db.collection('Devices').doc('Iphones').set({
+            [id]: {
+                IMEI: document.querySelector(devDiv + '.imei').value,
+                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
+                Model: Devices[id].Model,
+                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
+                Storage: document.querySelector(devDiv + '.speicher').value,
+                batterie: document.querySelector(devDiv + '.batterie').value,
+                image: document.querySelector(devDiv + '.bild').value,
+                status: Number(Devices[id].Status) - 1,
+                notes: Devices[id].Notes,
+                reperaturen: Devices[id].Reperaturen
+            }
+        }, {merge: true})
+    }
+}
 function NextStep() {
     var devDiv = ''
     if (document.documentElement.clientWidth < 768) {
@@ -120,7 +148,7 @@ function NextStep() {
     }
     document.querySelector('.body').style.position = 'absolute'
     var id = document.querySelector(devDiv + '.id').value
-    if (Devices[id].Status == "2") {
+    if (Number(Devices[id].Status) == 2) {
         db.collection('Devices').doc('sold').set({
             [id]: {
                 IMEI: document.querySelector(devDiv + '.imei').value,
@@ -138,8 +166,7 @@ function NextStep() {
         db.collection('Devices').doc('Iphones').update({
             [id]: firebase.firestore.FieldValue.delete()
         })
-    } 
-    if (Devices[id].Status == "1") {
+    } else {
         db.collection('Devices').doc('Iphones').set({
             [id]: {
                 IMEI: document.querySelector(devDiv + '.imei').value,
@@ -149,23 +176,7 @@ function NextStep() {
                 Storage: document.querySelector(devDiv + '.speicher').value,
                 batterie: document.querySelector(devDiv + '.batterie').value,
                 image: document.querySelector(devDiv + '.bild').value,
-                status: "2",
-                notes: Devices[id].Notes,
-                reperaturen: Devices[id].Reperaturen
-            }
-        }, {merge: true})
-    }
-    if (Devices[id].Status == "0") { 
-        db.collection('Devices').doc('Iphones').set({
-            [id]: {
-                IMEI: document.querySelector(devDiv + '.imei').value,
-                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
-                Model: Devices[id].Model,
-                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
-                Storage: document.querySelector(devDiv + '.speicher').value,
-                batterie: document.querySelector(devDiv + '.batterie').value,
-                image: document.querySelector(devDiv + '.bild').value,
-                status: "1",
+                status: Number(Devices[id].Status) + 1,
                 notes: Devices[id].Notes,
                 reperaturen: Devices[id].Reperaturen
             }
