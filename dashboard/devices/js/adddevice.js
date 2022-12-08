@@ -25,7 +25,6 @@ function save_add_dev() {
     var currentid = null
     db.collection('Devices').doc('Iphones').get().then((doc) => {
         currentid = Number(doc.data()['CurrentID'])
-        var id = document.querySelector('.id').value
         currentid += 1
         db.collection('Devices').doc('Iphones').set({
             [currentid]: {

@@ -43,18 +43,23 @@ db.collection('Devices').doc('Iphones').onSnapshot({
     document.querySelector('.WFS').innerHTML = ""
     GetDevices(doc).then((res) => {
         for (var key of Object.keys(res.Devices)) {
-            var PhoneValue = Number(res.Devices[key].Kaufpreis)
-            for (var k of Object.keys(res.Devices[key].Reperaturen)) {
-                PhoneValue += res.Devices[key].Reperaturen[k]
+            var PhoneValue = res.Devices[key]['purchase']['price']
+            for (var k of Object.keys(res.Devices[key]['reperations'])) {
+                PhoneValue += res.Devices[key]['reperations'][k]
             }
             let html = `
             <div id="device" onclick=details('${key}')>
-                <img src="${res.Devices[key].Image}">
-                <h3>${res.Devices[key].Model}</h3>
-                <h6>ID: ${key} ${res.Devices[key].Storage}gb ${res.Devices[key].Batterie}% ${PhoneValue}€</h6>
+                <img src="${res.Devices[key]['infos']['image']}">
+                <h3>${res.Devices[key]['device']['model']}</h3>
+                <h6>
+                ID: ${key} 
+                ${res.Devices[key]['device']['storage']}gb 
+                ${res.Devices[key]['device']['battery']}% 
+                ${PhoneValue}€
+                </h6>
             </div>
             `
-            document.querySelector('.' + Stats[res.Devices[key].Status]).innerHTML += html
+            document.querySelector('.' + Stats[res.Devices[key]['infos']['status']]).innerHTML += html
         }
         if (!document.querySelector('.RFS').innerHTML == "") {
             document.querySelector('#nodevrfs').style.display = 'none'
