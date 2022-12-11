@@ -1,5 +1,6 @@
 var currid = null;
 var reperationadded = false
+var reperationscopy = {}
 
 function getDeviceDiv() {
     if (document.documentElement.clientWidth < 768) {
@@ -39,6 +40,7 @@ function haschanged(devDiv) {
 function opendetails(id, Devices) {
     currid = id
     reperationadded = false
+    reperationscopy = JSON.parse(JSON.stringify(Devices[id]['reperations']))
     var devDiv = getDeviceDiv()
 
 
@@ -178,7 +180,7 @@ function closeDetails() {
             'ebay-id': document.querySelector(devDiv + '.anzeige-id').value,
             price: Number(document.querySelector(devDiv + '.kaufpreis').value),
         },
-        reperations: Devices[currid]['reperations'],
+        reperations: reperationscopy,
         seller: {
             email: document.querySelector(devDiv + '.seller-email').value,
             name: document.querySelector(devDiv + '.seller-name').value,
@@ -204,18 +206,18 @@ function addrep() {
     var cost = document.querySelector(devDiv + "#cost").value
     document.querySelector(devDiv + ".list").innerHTML = ""
     if (name+cost != '') {
-        Devices[currid]['reperations'][name] = Number(cost)
+        reperationscopy[name] = Number(cost)
         var totalrep = 0
-        for (var key2 of Object.keys(Devices[currid]['reperations'])) {
+        for (var key2 of Object.keys(reperationscopy)) {
             document.querySelector(devDiv + ".list").innerHTML += `
             <div class="repitem">
                 <div id="repname">
                     <h4>${key2}</h4>
                 </div>
-                <h5>${Devices[currid]['reperations'][key2]} Euro</h5>
+                <h5>${reperationscopy[key2]} Euro</h5>
             </div>
             `
-            totalrep += Devices[currid]['reperations'][key2]
+            totalrep += reperationscopy[key2]
         }
         reperationadded = true
         document.querySelector(devDiv + ".list").innerHTML += `<h5 id="tot">Total: ${totalrep} Euro</h5>`

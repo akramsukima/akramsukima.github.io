@@ -1,5 +1,5 @@
 <div class="page">
-    <img id="cover" src="https://assets.swappie.com/cdn-cgi/image/width=600,height=600,dpr=2,fit=contain,format=auto/swappie-iphone-12-pro-max-silver.png?v=11">
+    <img id="cover" src="https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-11-black.png?v=11">
     <div class="info">
         <div id="title">
             <div id="buttons">
@@ -7,32 +7,66 @@
                 <button id="failedDetails" onclick=save_add_dev()>Weiter</button>
             </div>
         </div>
-        <div id="info">
+
+        <div id="add-box">
             <h3 id="undertitle">Infos</h3>
             <div class="Input">
                 <h4>Model</h4>
-                <input type="text" class="model">
+                <select name="Model" class="model">
+                    <option value="1">IPhone 11</option>
+                    <option value="2">IPhone 11 Pro</option>
+                    <option value="3">IPhone 11 Pro Max</option>
+                    <option value="4">IPhone SE 2.Gen 2020</option>
+                    <option value="5">IPhone 12 mini</option>
+                    <option value="6">IPhone 12</option>
+                    <option value="7">IPhone 12 Pro</option>
+                    <option value="8">IPhone 12 Pro Max</option>
+                </select>
             </div>
             <div class="Input">
                 <h4>Speicher</h4>
                 <input type="number" class="speicher">
             </div>
             <div class="Input">
-                <h4>KaufPreis</h4>
-                <input type="number" class="kaufpreis">
-            </div>
-            <div class="Input">
                 <h4>Batterie</h4>
                 <input type="number" class="batterie">
             </div>
+        </div>
+
+        <div id="add-box">
+            <h3 id="undertitle">Infos zum Kauf</h3>
             <div class="Input">
-                <h4>Bild</h4>
-                <input type="text" class="bild">
+                <h4>Kaufpreis</h4>
+                <input type="number" class="kaufpreis">
+            </div>
+            <div class="Input">
+                <h4>Ebay Anzeige-ID</h4>
+                <input type="text" class="anzeige-id">
             </div>
         </div>
-        <div id="notes">
-            <h3 id="undertitle">Notizen</h3>
-            <textarea id="textarea"></textarea>
+
+        <div id="add-box">
+            <h3 id="undertitle">Infos zum Verkäufer</h3>
+            <div class="Input">
+                <h4>Name</h4>
+                <input type="text" class="seller-name">
+            </div>
+            <div class="Input">
+                <h4>Email</h4>
+                <input type="text" class="seller-email">
+            </div>
+        </div>
+
+        <div id="add-box">
+            <h3 id="undertitle">Infos zum Versand</h3>
+            <div class="Input">
+                <h4>Sendungsnummer</h4>
+                <input type="number" class="sendungsnummer">
+            </div>
+            <div class="Input">
+                <h4>Empfänger</h4>
+                <input type="text" class="empfänger">
+            </div>
         </div>
     </div>
 </div>

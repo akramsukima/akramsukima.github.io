@@ -13,6 +13,9 @@ body {
     transition: 0.3s;
     margin-bottom: 30px;
 }
+.box button {
+    color:black;
+}
 .box h2 {
     margin-bottom: 10px;
     font-weight: 400;
