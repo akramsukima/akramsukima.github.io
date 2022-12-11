@@ -2,30 +2,18 @@
     <img id="cover">
     <div class="info">
         <div id="title">
-            <h2 id="model">Iphone XS</h2>
-            <div id="buttons">
-                <button id="cancelDetails" onclick=cancelDetails()>Abbrechen</button>
-                <button id="closeDetails" onclick=closeDetails()>Speichern</button>
-            </div>
+            <h3 id="id">ID: 5</h3>
+            <h3 id="model">Iphone XS</h3>
         </div>
-        <div id="info">
-            <h3 id="undertitle">Infos</h3>
-            <div class="Input">
-                <h4>ID</h4>
-                <input type="text" class="id" readonly>
-            </div>
-            <div class="Input">
-                <h4>IMEI</h4>
-                <input type="text" class="imei">
-            </div>
-            <div class="Input">
-                <h4>KaufPreis</h4>
-                <input type="number" class="kaufpreis">
-            </div>
-            <div class="Input">
-                <h4>SerienNummer</h4>
-                <input type="text" class="seriennummer">
-            </div>
+        
+        <div id="top-buttons">
+            <button id="cancelDetails" onclick=cancelDetails()>Abbrechen</button>
+            <button id="closeDetails" onclick=closeDetails()>Speichern</button>
+        </div>
+
+
+        <div id="details-box">
+            <h3 id="undertitle">Infos zum Gerät</h3>
             <div class="Input">
                 <h4>Speicher</h4>
                 <input type="number" class="speicher">
@@ -35,16 +23,52 @@
                 <input type="number" class="batterie">
             </div>
             <div class="Input">
-                <h4>Bild</h4>
-                <input type="text" class="bild">
+                <h4>IMEI</h4>
+                <input type="text" class="imei">
+            </div>
+            <div class="Input">
+                <h4>SerienNummer</h4>
+                <input type="text" class="seriennummer">
             </div>
         </div>
-        <div id="notes">
-            <h3 id="undertitle">Notizen</h3>
-            <textarea id="textarea"></textarea>
+
+        <div id="details-box">
+            <h3 id="undertitle">Infos zum Kauf</h3>
+            <div class="Input">
+                <h4>Kaufpreis</h4>
+                <input type="number" class="kaufpreis">
+            </div>
+            <div class="Input">
+                <h4>Ebay Anzeige-ID</h4>
+                <input type="text" class="anzeige-id">
+            </div>
         </div>
 
-        <div class="reperatur">
+        <div id="details-box">
+            <h3 id="undertitle">Infos zum Verkäufer</h3>
+            <div class="Input">
+                <h4>Name</h4>
+                <input type="text" class="seller-name">
+            </div>
+            <div class="Input">
+                <h4>Email</h4>
+                <input type="text" class="seller-email">
+            </div>
+        </div>
+
+        <div id="details-box">
+            <h3 id="undertitle">Infos zum Versand</h3>
+            <div class="Input">
+                <h4>Sendungsnummer</h4>
+                <input type="number" class="sendungsnummer">
+            </div>
+            <div class="Input">
+                <h4>Empfänger</h4>
+                <input type="text" class="empfänger">
+            </div>
+        </div>
+
+        <div id="details-box" class="reperatur">
             <h3 id="undertitle">Reperaturen</h3>
             <div class="list">
                 <div class="repitem">
@@ -64,9 +88,9 @@
         </div>
 
 
-        <div id="btmbuttons">
+        <div id="btm-buttons">
             <button id="failedDetails" onclick=failedDetails()>Fehlgeschlagen</button>
-            <button id="lastStep" onclick=lastStep()>Schritt Zurück</button>
+            <button id="lastStep" onclick=lastStep()>Schritt zurück</button>
             <button id="NextStep" onclick=NextStep()>Nächster Schritt</button>
         </div>
     </div>

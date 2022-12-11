@@ -1,7 +1,7 @@
 var Stats = {
-    "0": "WFS",
-    "1": "IR",
-    "2": "RFS",
+    0: "WFS",
+    1: "IR",
+    2: "RFS",
 }
 
 async function GetDevices(doc) {
@@ -11,19 +11,41 @@ async function GetDevices(doc) {
         if (key == 'CurrentID') {
             CurrentID = doc.data()[key]
         } else {
-            var Device = {
-                IMEI: doc.data()[key]['IMEI'],
-                Kaufpreis: doc.data()[key]['KaufPreis'],
-                Model: doc.data()[key]['Model'],
-                Seriannummer: doc.data()[key]['Seriennummer'],
-                Storage: doc.data()[key]['Storage'],
-                Batterie: doc.data()[key]['batterie'],
-                Image: doc.data()[key]['image'],
-                Status: doc.data()[key]['status'],
-                Reperaturen: doc.data()[key]['reperaturen'],
-                Notes: doc.data()[key]['notes']
+            if (doc.data()[key]['datatypeversion'] != 2) {
+                var Device = {
+                    datatypeversion: 2,
+                    device: {
+                        battery: Number(doc.data()[key]['batterie']),
+                        imei: doc.data()[key]['IMEI'],
+                        model: doc.data()[key]['Model'],
+                        serialnumber: doc.data()[key]['Seriennummer'],
+                        storage: Number(doc.data()[key]['Storage'])
+                    },
+                    infos: {
+                        image: doc.data()[key]['image'],
+                        status: Number(doc.data()[key]['status']),
+                        timeadded: '',
+                    },
+                    purchase: {
+                        'ebay-id': '',
+                        price: Number(doc.data()[key]['KaufPreis']),
+                    },
+                    reperations: doc.data()[key]['reperaturen'],
+                    seller: {
+                        email: '',
+                        name: '',
+                    },
+                    shipment: {
+                        empfänger: '',
+                        'shipment-id': '',
+                    },
+                }
+                devices[key] = Device
+            }else{
+                var Device = {
+                }
+                devices[key] = doc.data()[key]
             }
-            devices[key] = Device
         }
     }
     return {Devices: devices, ID: CurrentID}

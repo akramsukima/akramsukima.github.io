@@ -1,239 +1,225 @@
-function opendetails(id, Devices) {
-    var devDiv = ''
+var currid = null;
+var reperationadded = false
+var reperationscopy = {}
+
+function getDeviceDiv() {
     if (document.documentElement.clientWidth < 768) {
         document.querySelector('.details-mobile').style.display = 'block'
-        devDiv = 'div.details-mobile '
+        return 'div.details-mobile '
     } else {
         document.querySelector('.details-pc').style.display = 'block'
-        devDiv = 'div.details-pc '
+        return 'div.details-pc '
     }
+}
+function haschanged(devDiv) {
+    var value = 0
+    console.log(document.querySelector(devDiv + '.batterie'), devDiv + '.batterie')
+    value += Number(Number(document.querySelector(devDiv + '.batterie').value) == Devices[currid]['device']['battery'])
+    value += Number(document.querySelector(devDiv + '.imei').value == Devices[currid]['device']['imei'])
+    value += Number(document.querySelector(devDiv + '.seriennummer').value == Devices[currid]['device']['serialnumber'])
+    value += Number(Number(document.querySelector(devDiv + '.speicher').value) == Devices[currid]['device']['storage'])
+    value += Number(document.querySelector(devDiv + '.anzeige-id').value == Devices[currid]['purchase']['ebay-id'])
+    value += Number(Number(document.querySelector(devDiv + '.kaufpreis').value) == Devices[currid]['purchase']['price'])
+
+    value += Number(document.querySelector(devDiv + '.seller-email').value == Devices[currid]['seller']['email'])
+    value += Number(document.querySelector(devDiv + '.seller-name').value == Devices[currid]['seller']['name'])
+
+    value += Number(document.querySelector(devDiv + '.empfänger').value == Devices[currid]['shipment']['empfänger'])
+    value += Number(Number(document.querySelector(devDiv + '.sendungsnummer').value) == Devices[currid]['shipment']['shipment-id'])
+    
+    if (reperationadded) {
+        return true
+    } else {
+        if (value!=10) {
+            return true
+        }
+    }
+    return false
+}
+
+function opendetails(id, Devices) {
+    currid = id
+    reperationadded = false
+    reperationscopy = JSON.parse(JSON.stringify(Devices[id]['reperations']))
+    var devDiv = getDeviceDiv()
+
+
     document.querySelector('.body').style.position = 'fixed'
-    document.querySelector(devDiv + '#cover').src = Devices[id].Image
+    document.querySelector(devDiv + '#cover').src = Devices[id]['infos']['image']
+    document.querySelector(devDiv + "#model").innerHTML = Devices[id]['device']['model']
+    document.querySelector(devDiv + "#id").innerHTML = `ID: ${id}`
+
+    document.querySelector(devDiv + '.speicher').value = Devices[id]['device']['storage']
+    document.querySelector(devDiv + '.batterie').value = Devices[id]['device']['battery']
+    document.querySelector(devDiv + '.imei').value = Devices[id]['device']['imei']
+    document.querySelector(devDiv + '.seriennummer').value = Devices[id]['device']['serialnumber']
+
+    document.querySelector(devDiv + '.kaufpreis').value = Devices[id]['purchase']['price']
+    document.querySelector(devDiv + '.anzeige-id').value = Devices[id]['purchase']['ebay-id']
+
+    document.querySelector(devDiv + '.seller-name').value = Devices[id]['seller']['name']
+    document.querySelector(devDiv + '.seller-email').value = Devices[id]['seller']['email']
+
+    document.querySelector(devDiv + '.sendungsnummer').value = Devices[id]['shipment']['shipment-id']
+    document.querySelector(devDiv + '.empfänger').value = Devices[id]['shipment']['empfänger']
+
     document.querySelector(devDiv + "#name").value = ""
-    document.querySelector(devDiv + "#model").innerHTML = Devices[id].Model
     document.querySelector(devDiv + "#cost").value = ""
-    document.querySelector(devDiv + '.id').value = id
-    document.querySelector(devDiv + '.imei').value = Devices[id].IMEI
-    document.querySelector(devDiv + '.kaufpreis').value = Devices[id].Kaufpreis
-    document.querySelector(devDiv + '.seriennummer').value = Devices[id].Seriannummer
-    document.querySelector(devDiv + '.speicher').value = Devices[id].Storage
-    document.querySelector(devDiv + '.batterie').value = Devices[id].Batterie
-    document.querySelector(devDiv + '.bild').value = Devices[id].Image
     document.querySelector(devDiv + ".list").innerHTML = ""
-    document.querySelector(devDiv + '#textarea').value = Devices[id].Notes
-    if (Devices[id].Status == '1') {
+
+    
+    if (Devices[id]['infos']['status'] == 1 || Devices[id]['infos']['status'] == 2) {
         var totalrep = 0
         document.querySelector(devDiv + ".reperatur").style.display = 'block'
         document.querySelector(devDiv + ".addrep").style.display = 'flex'
-        for (var key2 of Object.keys(Devices[id].Reperaturen)) {
+        for (var key2 of Object.keys(Devices[id]['reperations'])) {
             document.querySelector(devDiv + ".list").innerHTML += `
             <div class="repitem">
                 <div id="repname">
                     <h4>${key2}</h4>
                 </div>
-                <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
+                <h5>${Devices[id]['reperations'][key2]} Euro</h5>
             </div>
             `
-            totalrep += Devices[id].Reperaturen[key2]
+            totalrep += Devices[id]['reperations'][key2]
         }
-        document.querySelector(devDiv + ".list").innerHTML += `
-            <h5 id="tot">Total: ${totalrep} Euro</h5>`
+        document.querySelector(devDiv + ".list").innerHTML += `<h5 id="tot">Total: ${totalrep} Euro</h5>`
         if (totalrep == 0) {
-            document.querySelector(devDiv + ".list").innerHTML = `
-            <h5>Noch keine Reperaturen gemeldet</h5>
-            `
+            document.querySelector(devDiv + ".list").innerHTML = '<h5>Noch keine Reperaturen gemeldet</h5>'
         }
     } else {
         document.querySelector(devDiv + ".reperatur").style.display = 'none'
     }
-    if (Devices[id].Status == '2') {
+    if (Devices[id]['infos']['status'] == 2) {
         document.querySelector(devDiv + "#NextStep").innerHTML = "Verkauft"
-        var totalrep = 0
         document.querySelector(devDiv + ".reperatur").style.display = 'block'
         document.querySelector(devDiv + ".addrep").style.display = 'none'
-        for (var key2 of Object.keys(Devices[id].Reperaturen)) {
-            document.querySelector(devDiv + ".list").innerHTML += `
-            <div class="repitem">
-                <h4>${key2}</h4>
-                <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
-            </div>
-            `
-            totalrep += Devices[id].Reperaturen[key2]
-        }
-        document.querySelector(devDiv + ".list").innerHTML += `
-            <h5 id="tot">Total: ${totalrep} Euro</h5>`
-        if (totalrep == 0) {
-            document.querySelector(devDiv + ".list").innerHTML = `
-            <h5>Noch keine Reperaturen gemeldet</h5>
-            `
-        }
     } else {
         document.querySelector(devDiv + "#NextStep").innerHTML = "Nächster Schritt"
     }
 }
 function cancelDetails() {
-    if (document.documentElement.clientWidth < 768) {
-        document.querySelector('.details-mobile').style.display = 'none'
+    var devDiv = getDeviceDiv()
+    if (haschanged(devDiv)) {
+        var proceed = confirm("Sicher das sie die Änderungen verwerfen wollen?");
+        if (proceed) {
+            document.querySelector(devDiv).style.display = 'none'
+            document.querySelector('.body').style.position = 'absolute'
+        } else {
+            //reset reperationadded
+        }
     } else {
-        document.querySelector('.details-pc').style.display = 'none'
+        document.querySelector(devDiv).style.display = 'none'
+        document.querySelector('.body').style.position = 'absolute'
     }
-    document.querySelector('.body').style.position = 'absolute'
 }
 function failedDetails() {
-    var devDiv = ''
-    if (document.documentElement.clientWidth < 768) {
-        document.querySelector('.details-mobile').style.display = 'none'
-        devDiv = 'div.details-mobile '
-    } else {
-        document.querySelector('.details-pc').style.display = 'none'
-        devDiv = 'div.details-pc '
-    }
+    var devDiv = getDeviceDiv()
+    document.querySelector(devDiv).style.display = 'none'
     document.querySelector('.body').style.position = 'absolute'
-    var id = document.querySelector(devDiv + '.id').value
-    db.collection('Devices').doc('failed').set({
-        [id]: {
-            IMEI: document.querySelector(devDiv + '.imei').value,
-            KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
-            Model: Devices[id].Model,
-            Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
-            Storage: document.querySelector(devDiv + '.speicher').value,
-            batterie: document.querySelector(devDiv + '.batterie').value,
-            image: document.querySelector(devDiv + '.bild').value,
-            status: Devices[id].Status,
-            notes: Devices[id].Notes,
-            reperaturen: Devices[id].Reperaturen
 
-        }
+    db.collection('Devices').doc('failed').set({
+        [currid]: Devices[currid]
     }, {merge: true})
     db.collection('Devices').doc('Iphones').update({
-        [id]: firebase.firestore.FieldValue.delete()
+        [currid]: firebase.firestore.FieldValue.delete()
     })
 }
 function lastStep() {
-    var devDiv = ''
-    if (document.documentElement.clientWidth < 768) {
-        document.querySelector('.details-mobile').style.display = 'none'
-        devDiv = 'div.details-mobile '
-    } else {
-        document.querySelector('.details-pc').style.display = 'none'
-        devDiv = 'div.details-pc '
-    }
+    var devDiv = getDeviceDiv()
+    document.querySelector(devDiv).style.display = 'none'
     document.querySelector('.body').style.position = 'absolute'
-    var id = document.querySelector(devDiv + '.id').value
-    if (!Number(Devices[id].Status) == 0) {
+
+    if (Devices[currid]['infos']['status'] > 0) {
+        Devices[currid]['infos']['status'] -= 1
         db.collection('Devices').doc('Iphones').set({
-            [id]: {
-                IMEI: document.querySelector(devDiv + '.imei').value,
-                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
-                Model: Devices[id].Model,
-                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
-                Storage: document.querySelector(devDiv + '.speicher').value,
-                batterie: document.querySelector(devDiv + '.batterie').value,
-                image: document.querySelector(devDiv + '.bild').value,
-                status: Number(Devices[id].Status) - 1,
-                notes: Devices[id].Notes,
-                reperaturen: Devices[id].Reperaturen
-            }
+            [currid]: Devices[currid]
         }, {merge: true})
     }
 }
 function NextStep() {
-    var devDiv = ''
-    if (document.documentElement.clientWidth < 768) {
-        document.querySelector('.details-mobile').style.display = 'none'
-        devDiv = 'div.details-mobile '
-    } else {
-        document.querySelector('.details-pc').style.display = 'none'
-        devDiv = 'div.details-pc '
-    }
+    var devDiv = getDeviceDiv()
+    document.querySelector(devDiv).style.display = 'none'
     document.querySelector('.body').style.position = 'absolute'
-    var id = document.querySelector(devDiv + '.id').value
-    if (Number(Devices[id].Status) == 2) {
+
+    if (Devices[currid]['infos']['status'] == 2) {
         db.collection('Devices').doc('sold').set({
-            [id]: {
-                IMEI: document.querySelector(devDiv + '.imei').value,
-                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
-                Model: Devices[id].Model,
-                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
-                Storage: document.querySelector(devDiv + '.speicher').value,
-                batterie: document.querySelector(devDiv + '.batterie').value,
-                image: document.querySelector(devDiv + '.bild').value,
-                status: Devices[id].Status,
-                notes: Devices[id].Notes,
-                reperaturen: Devices[id].Reperaturen
-            }
+            [currid]: Devices[currid]
         }, {merge: true})
         db.collection('Devices').doc('Iphones').update({
-            [id]: firebase.firestore.FieldValue.delete()
+            [currid]: firebase.firestore.FieldValue.delete()
         })
     } else {
+        Devices[currid]['infos']['status'] += 1
         db.collection('Devices').doc('Iphones').set({
-            [id]: {
-                IMEI: document.querySelector(devDiv + '.imei').value,
-                KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
-                Model: Devices[id].Model,
-                Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
-                Storage: document.querySelector(devDiv + '.speicher').value,
-                batterie: document.querySelector(devDiv + '.batterie').value,
-                image: document.querySelector(devDiv + '.bild').value,
-                status: Number(Devices[id].Status) + 1,
-                notes: Devices[id].Notes,
-                reperaturen: Devices[id].Reperaturen
-            }
+            [currid]: Devices[currid]
         }, {merge: true})
     }
 }
 function closeDetails() {
-    var devDiv = ''
-    if (document.documentElement.clientWidth < 768) {
-        document.querySelector('.details-mobile').style.display = 'none'
-        devDiv = 'div.details-mobile '
-    } else {
-        document.querySelector('.details-pc').style.display = 'none'
-        devDiv = 'div.details-pc '
-    }
+    var devDiv = getDeviceDiv()
+    document.querySelector(devDiv).style.display = 'none'
     document.querySelector('.body').style.position = 'absolute'
-    var id = document.querySelector(devDiv + '.id').value
+
+
+    var Device = {
+        datatypeversion: 2,
+        device: {
+            battery: Number(document.querySelector(devDiv + '.batterie').value),
+            imei: document.querySelector(devDiv + '.imei').value,
+            model: Devices[currid]['device']['model'],
+            serialnumber: document.querySelector(devDiv + '.seriennummer').value,
+            storage: Number(document.querySelector(devDiv + '.speicher').value),
+        },
+        infos: {
+            image: Devices[currid]['infos']['image'],
+            status: Devices[currid]['infos']['status'],
+            timeadded: Devices[currid]['infos']['timeadded'],
+        },
+        purchase: {
+            'ebay-id': document.querySelector(devDiv + '.anzeige-id').value,
+            price: Number(document.querySelector(devDiv + '.kaufpreis').value),
+        },
+        reperations: reperationscopy,
+        seller: {
+            email: document.querySelector(devDiv + '.seller-email').value,
+            name: document.querySelector(devDiv + '.seller-name').value,
+        },
+        shipment: {
+            empfänger: document.querySelector(devDiv + '.empfänger').value,
+            'shipment-id': Number(document.querySelector(devDiv + '.sendungsnummer').value),
+        },
+    }
+
+    db.collection('Devices').doc('Iphones').update({
+        [currid]: firebase.firestore.FieldValue.delete()
+    })
     db.collection('Devices').doc('Iphones').set({
-        [id]: {
-            IMEI: document.querySelector(devDiv + '.imei').value,
-            KaufPreis: document.querySelector(devDiv + '.kaufpreis').value,
-            Model: Devices[id].Model,
-            Seriennummer: document.querySelector(devDiv + '.seriennummer').value,
-            Storage: document.querySelector(devDiv + '.speicher').value,
-            batterie: document.querySelector(devDiv + '.batterie').value,
-            image: document.querySelector(devDiv + '.bild').value,
-            status: Devices[id].Status,
-            notes: document.querySelector(devDiv + '#textarea').value,
-            reperaturen: Devices[id].Reperaturen
-        }
+        [currid]: Device
     }, {merge: true}).catch((error) => {
         console.error(error);
-      });
+    });
 }
 function addrep() {
-    var devDiv = ''
-    if (document.documentElement.clientWidth < 768) {
-        devDiv = 'div.details-mobile '
-    } else {
-        devDiv = 'div.details-pc '
-    }
+    var devDiv = getDeviceDiv()
     var name = document.querySelector(devDiv + "#name").value
     var cost = document.querySelector(devDiv + "#cost").value
-    var id = document.querySelector(devDiv + '.id').value
+    document.querySelector(devDiv + ".list").innerHTML = ""
     if (name+cost != '') {
-        Devices[id].Reperaturen[name] = Number(cost)
+        reperationscopy[name] = Number(cost)
         var totalrep = 0
-        document.querySelector(devDiv + ".list").innerHTML = ''
-        for (var key2 of Object.keys(Devices[id].Reperaturen)) {
+        for (var key2 of Object.keys(reperationscopy)) {
             document.querySelector(devDiv + ".list").innerHTML += `
             <div class="repitem">
-                <h4>${key2}</h4>
-                <h5>${Devices[id].Reperaturen[key2]} Euro</h5>
+                <div id="repname">
+                    <h4>${key2}</h4>
+                </div>
+                <h5>${reperationscopy[key2]} Euro</h5>
             </div>
             `
-            totalrep += Devices[id].Reperaturen[key2]
+            totalrep += reperationscopy[key2]
         }
+        reperationadded = true
         document.querySelector(devDiv + ".list").innerHTML += `<h5 id="tot">Total: ${totalrep} Euro</h5>`
     }
     document.querySelector(devDiv + "#cost").value = ""
