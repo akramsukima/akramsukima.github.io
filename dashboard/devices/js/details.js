@@ -44,7 +44,7 @@ function opendetails(id, Devices) {
     var devDiv = getDeviceDiv()
 
 
-    document.querySelector('.body').style.position = 'fixed'
+    document.querySelector('html').style.overflow = 'hidden'
     document.querySelector(devDiv + '#cover').src = Devices[id]['infos']['image']
     document.querySelector(devDiv + "#model").innerHTML = Devices[id]['device']['model']
     document.querySelector(devDiv + "#id").innerHTML = `ID: ${id}`
@@ -104,19 +104,19 @@ function cancelDetails() {
         var proceed = confirm("Sicher das sie die Änderungen verwerfen wollen?");
         if (proceed) {
             document.querySelector(devDiv).style.display = 'none'
-            document.querySelector('.body').style.position = 'absolute'
+            document.querySelector('html').style.overflow = 'scroll'
         } else {
             //reset reperationadded
         }
     } else {
         document.querySelector(devDiv).style.display = 'none'
-        document.querySelector('.body').style.position = 'absolute'
+        document.querySelector('html').style.overflow = 'scroll'
     }
 }
 function failedDetails() {
     var devDiv = getDeviceDiv()
     document.querySelector(devDiv).style.display = 'none'
-    document.querySelector('.body').style.position = 'absolute'
+    document.querySelector('html').style.overflow = 'scroll'
 
     db.collection('Devices').doc('failed').set({
         [currid]: Devices[currid]
@@ -128,7 +128,7 @@ function failedDetails() {
 function lastStep() {
     var devDiv = getDeviceDiv()
     document.querySelector(devDiv).style.display = 'none'
-    document.querySelector('.body').style.position = 'absolute'
+    document.querySelector('html').style.overflow = 'scroll'
 
     if (Devices[currid]['infos']['status'] > 0) {
         Devices[currid]['infos']['status'] -= 1
@@ -140,7 +140,7 @@ function lastStep() {
 function NextStep() {
     var devDiv = getDeviceDiv()
     document.querySelector(devDiv).style.display = 'none'
-    document.querySelector('.body').style.position = 'absolute'
+    document.querySelector('html').style.overflow = 'scroll'
 
     if (Devices[currid]['infos']['status'] == 2) {
         db.collection('Devices').doc('sold').set({
@@ -159,7 +159,7 @@ function NextStep() {
 function closeDetails() {
     var devDiv = getDeviceDiv()
     document.querySelector(devDiv).style.display = 'none'
-    document.querySelector('.body').style.position = 'absolute'
+    document.querySelector('html').style.overflow = 'scroll'
 
 
     var Device = {

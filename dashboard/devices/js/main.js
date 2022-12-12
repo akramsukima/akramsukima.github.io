@@ -18,6 +18,9 @@ auth.onAuthStateChanged((user) => {
     GetHtml('html/AddDevice.html').then(x => {
         document.querySelector('.add-device-mobile').innerHTML = x
     })
+    GetHtml('html/AddDevice.html').then(x => {
+        document.querySelector('.add-device-pc').innerHTML = x
+    })
     GetHtml('html/details.html').then(x => {
         document.querySelector('.details-pc').innerHTML = x
         document.querySelector('.details-mobile').innerHTML = x

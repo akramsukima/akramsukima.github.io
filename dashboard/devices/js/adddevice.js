@@ -23,8 +23,8 @@ function getDeviceDivAdd() {
         document.querySelector('.add-device-mobile').style.display = 'block'
         return 'div.add-device-mobile '
     } else {
-        document.querySelector('.add-device-mobile').style.display = 'block'
-        return 'div.add-device-mobile '
+        document.querySelector('.add-device-pc').style.display = 'block'
+        return 'div.add-device-pc '
     }
 }
 function getCurrentTimestamp () {
@@ -33,7 +33,7 @@ function getCurrentTimestamp () {
 
 function open_add_dev() {
     var devDiv = getDeviceDivAdd()
-    document.querySelector('.body').style.position = 'fixed'
+    document.querySelector('html').style.overflow = 'hidden'
 
     document.querySelector(devDiv + '.speicher').value = ''
     document.querySelector(devDiv + '.batterie').value = ''
@@ -93,10 +93,11 @@ function save_add_dev() {
     })
 
     document.querySelector('.add-device-mobile').style.display = 'none'
-    document.querySelector('.add-device-mobile').style.display = 'none'
-    document.querySelector('.body').style.position = 'absolute'
+    document.querySelector('.add-device-pc').style.display = 'none'
+    document.querySelector('html').style.overflow = 'scroll'
 }
 function cancle_add_dev() {
     document.querySelector('.add-device-mobile').style.display = 'none'
-    document.querySelector('.body').style.position = 'absolute'
+    document.querySelector('.add-device-pc').style.display = 'none'
+    document.querySelector('html').style.overflow = 'scroll'
 }
